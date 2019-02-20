@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Add compiler{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.student.label }}
+            {{ form.student(size=12) }}
+            {% for error in form.student.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form.repo_url.label }}
+            {{ form.repo_url(size=36) }}
+            {% for error in form.repo_url.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form.submit() }}<br>
+        </p>
+
+        <p></p>
+    </form>
+</div>
+{% endblock %}

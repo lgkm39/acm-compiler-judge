@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block title %}Testcase List{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>Testcase List</h1>
+</div>
+<table class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th>
+                {% if sort_method == 'download' and reverse == 'T'%}
+                    <a href="{{url_for('testcases', sort_method='download', reverse='F')}}">
+                        Download
+                    </a>
+                {% else %}
+                    <a href="{{url_for('testcases', sort_method='download', reverse='T')}}">
+                        Download
+                    </a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sort_method == 'enabled' and reverse == 'T'%}
+                    <a href="{{url_for('testcases', sort_method='enabled', reverse='F')}}">
+                        Enabled
+                    </a>
+                {% else %}
+                    <a href="{{url_for('testcases', sort_method='enabled', reverse='T')}}">
+                        Enabled
+                    </a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sort_method == 'phase' and reverse == 'T'%}
+                    <a href="{{url_for('testcases', sort_method='phase', reverse='F')}}">
+                        Phase
+                    </a>
+                {% else %}
+                    <a href="{{url_for('testcases', sort_method='phase', reverse='T')}}">
+                        Phase
+                    </a>
+                {% endif %}
+            </th>
+            <th>Comment</th>
+            <th>Pass(History)
+                {% if sort_method == 'pass' and reverse == 'T'%}
+                    <a href="{{url_for('testcases', sort_method='pass', reverse='F')}}">
+                        Pass
+                    </a>
+                {% else %}
+                    <a href="{{url_for('testcases', sort_method='pass', reverse='T')}}">
+                        Pass
+                    </a>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for t in testcases %}
+        <tr class="{% if not t.enabled %}disabled-row{% endif %}">
+            {% if current_user.is_active and current_user.is_admin() %}
+                <td><a href="{{url_for('edit_testcase', testcase_id=t.id)}}">T{{t.id}}</a></td>
+                <td>
+                    <a href="{{url_for('set_testcase', testcase_id=t.id)}}">
+                        <span class="glyphicon glyphicon-{{'ok' if t.enabled else 'remove'}}" aria-hidden="true">
+                        </span>
+                    </a>
+                </td>
+            {% else %}
+                <td><a href="{{url_for('download_testcase', id=t.id)}}">{{t.id}}</a></td>
+                <td><span class="glyphicon glyphicon-{{'ok' if t.enabled else 'remove'}}" aria-hidden="true"></span></td>
+            {% endif %}
+
+            <td><span class="label label-phase-{{t.phase | phase_to_index}}">{{t.phase}}</span></td>
+{#            <td>{% if t.timeout %}{{'{:.3f}s'.format(t.timeout)}}{% endif %}</td>#}
+{#            <td>{% if t.is_public %}<a href="{{url_for('download_testcase', id=t.id)}}">Download</a>{% else %}Not Available{% endif %}</td>#}
+            <td width="50%">{% if t.comment %}{{ t.comment }}{% endif %}</td>
+{#            <td>{{t.cnt_run}} / {{t.cnt_hack}}</td>#}
+{#            <td>{{t.cnt_run}} / {{t.cnt_hack}} / {% if t.cnt_run == 0 %}0.0%{% else %}{{'{:.1f}%'.format(100.0 - t.cnt_hack * 100.0 / t.cnt_run)}}{% endif %}</td>#}
+            <td><a href="{{url_for('runs', testcase_id=t.id)}}">{% if t.cnt_run == 0 %}0.0%{% else %}{{'{:.1f}%'.format(100.0 - t.cnt_hack * 100.0 / t.cnt_run)}}{% endif %}</a></td>
+{#            <td><a href="{{url_for('runs', testcase_id=t.id)}}">(See Runs)</a></td>#}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

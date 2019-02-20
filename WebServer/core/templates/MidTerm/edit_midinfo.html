@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}edit midterm info{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>
+        Report of  <span class="monospace">{{ user.student_name }}</span>
+    </h1>
+</div>
+
+
+<div class="jumbotron">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.TA.label }}
+            {{ form.TA }}
+            {% for error in form.TA.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            {{ form.self_report.label }}
+            {{ form.self_report }}
+            {% for error in form.self_report.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            {% if current_user.is_active and current_user.is_admin() %}
+                {{ form.TA_report.label }}
+                {{ form.TA_report }}
+                {% for error in form.TA_report.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            {% endif %}
+
+            {{ form.submit() }}<br>
+        </p>
+
+        <p></p>
+    </form>
+</div>
+{% endblock %}
