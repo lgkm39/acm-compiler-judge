@@ -17,7 +17,7 @@ cd WebServer
 ./maintenance.py initdb
 ./maintenance.py initdb <random_token>
 ./maintenance.py makedirs
-```bash
+```
 
 # Setup Guide for Judge Server
 ```bash
