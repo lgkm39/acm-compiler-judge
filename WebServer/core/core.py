@@ -10,4 +10,4 @@ import views
 app = web.app
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=settings.CORE_PORT, debug=True)
+    app.run(host='0.0.0.0', port=settings.CORE_PORT, debug=False)

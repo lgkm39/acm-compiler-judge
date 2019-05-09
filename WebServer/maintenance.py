@@ -407,28 +407,28 @@ def generate_final_result():
                                 DISCOUNT=DISCOUNT,
                                 days=days))
 
+#if __name__ == '__main__':
+#    u = db_session.query(User).filter(User.username == u'巫宇威').first()
+#    db_session.delete(u)
+#    db_session.commit()
 if __name__ == '__main__':
-    u = db_session.query(User).filter(User.username == u'巫宇威').first()
-    db_session.delete(u)
-    db_session.commit()
-# if __name__ == '__main__':
-#     actions = [
-#         add_compiler,
-#         delete_compiler,
-#         add_testcase,
-#         set_testcase,
-#         rejudge_version,
-#         initdb,
-#         makedirs,
-#         clear_judge_testcase_cache,
-#         final_rejudge,
-#         generate_final_result,
-#     ]
-#     action_map = {func.__name__: func for func in actions}
-#     if len(sys.argv) < 2 or sys.argv[1] not in action_map:
-#         print('usage: ./maintenance.py <action>')
-#         print('<action> can be:')
-#         for k in actions:
-#             print('    %s' % k.__name__)
-#         sys.exit(1)
-#     action_map[sys.argv[1]]()
+    actions = [
+        add_compiler,
+        delete_compiler,
+        add_testcase,
+        set_testcase,
+        rejudge_version,
+        initdb,
+        makedirs,
+        clear_judge_testcase_cache,
+        final_rejudge,
+        generate_final_result,
+    ]
+    action_map = {func.__name__: func for func in actions}
+    if len(sys.argv) < 2 or sys.argv[1] not in action_map:
+        print('usage: ./maintenance.py <action>')
+        print('<action> can be:')
+        for k in actions:
+            print('    %s' % k.__name__)
+        sys.exit(1)
+    action_map[sys.argv[1]]()

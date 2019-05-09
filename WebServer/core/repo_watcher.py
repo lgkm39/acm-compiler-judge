@@ -29,12 +29,12 @@ def do_compiler(compiler):
     if not version_sha:
         return False
 
-    # if version_sha and compiler.latest_version_id:
-    #     version = db_session.query(Version)\
-    #                         .filter(Version.id == compiler.latest_version_id)\
-    #                         .one()
-    #     if version_sha == version.sha:
-    #         return False
+    if version_sha and compiler.latest_version_id:
+        version = db_session.query(Version)\
+                            .filter(Version.id == compiler.latest_version_id)\
+                            .one()
+        if version_sha == version.sha:
+            return False
 
     version = Version(compiler_id=compiler.id,
                       sha=version_sha,
@@ -48,14 +48,12 @@ def do_compiler(compiler):
     return True
 #
 #
-# def main():
-#     print 'repo_watcher started'
-#     compilers = db_session.query(Compiler).all()
-#     while True:
-#         for compiler in compilers:
-#             do_compiler(compiler)
-#             time.sleep(2)
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    print 'repo_watcher started'
+    compilers = db_session.query(Compiler).all()
+    while True:
+        for compiler in compilers:
+            do_compiler(compiler)
+            time.sleep(60)
+if __name__ == '__main__':
+    main()

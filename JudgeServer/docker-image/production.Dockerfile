@@ -10,10 +10,10 @@ RUN apt-get install -y g++-7
 RUN apt-get install -y gcc-7
 RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
-RUN apt-get install -y oracle-java8-installer build-essential time nasm unzip
+RUN apt-get install -y build-essential time nasm unzip
+RUN apt-get install -y default-jre
+RUN apt-get install -y default-jdk
 RUN rm -rf /var/lib/apt/lists/*
-RUN rm -rf /var/cache/oracle-jdk8-install
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 CMD ["bash"]
 

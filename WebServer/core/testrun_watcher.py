@@ -23,7 +23,7 @@ def do_pending(version):
                           .filter(Testcase.enabled == True)\
                           .filter(Testcase.phase == version.phase)
     for testcase in testcases:
-        if testcase.phase in settings.NO_TEST:
+        if testcase.phase in ['semantic pretest', 'semantic extended']:
             continue
         if testcase.id not in presented:
             r = TestRun(version_id=version.id,

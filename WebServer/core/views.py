@@ -465,11 +465,12 @@ def final_board():
     rank_list = []
     testcases = []
     stander = {}
+    skiplist=['Mushroom','TA','zky','mc']
     for c in tmp_compilers:
         u = db_session.query(User).filter(User.compiler_id == c.id).first()
         if not u:
             continue
-        if u.student_name == 'Mushroom':
+        if u.student_name in skiplist:
             continue
         v = db_session.query(Version).filter(Version.id == c.latest_version_id).first()
         if not v:
@@ -514,8 +515,10 @@ def final_board():
         if item['u'].student_name == 'GCC -O0':
             flag_O0 = item['sorce']
     for i, item in enumerate(rank_list):
-        if item['sorce'] >= flag_O1:
-            item['real_score'] = 95 + 5.0 * (item['sorce'] - flag_O1) / (rank_list[2]['sorce'] - flag_O1)
+        if item['sorce'] >= flag_O2:
+            item['real_score'] = 100.0
+        elif item['sorce'] >= flag_O1:
+            item['real_score'] = 95 + 5.0 * (item['sorce'] - flag_O1) / (flag_O2 - flag_O1)
         elif item['sorce'] >= flag_O0:
             item['real_score'] = 85 + 10.0 * (item['sorce'] - flag_O0) / (flag_O1 - flag_O0)
         else:
@@ -906,6 +909,7 @@ def backend_dispatch_testrun():
         message = 'ask for run tasks, but not found'
         judge_status[judge] = JudgeStatus(name=judge, action=message, time=datetime.utcnow())
         return jsonify({'found': False})
+    print(t)
     v = db_session.query(Version).filter(Version.id == t.version_id).one()
     c = db_session.query(Compiler).filter(Compiler.id == v.compiler_id).one()
     ret = {
