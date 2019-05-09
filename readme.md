@@ -9,12 +9,11 @@ postgres=# CREATE USER compiler2017 WITH PASSWORD 'mypassword';
 postgres=# CREATE DATABASE compiler2017;
 postgres=# GRANT ALL PRIVILEGES ON DATABASE compiler2017 to compiler2017;
 postgres=# \q
-git clone https://github.com/abcdabcd987/acm-compiler-judge.git
-cd acm-compiler-judge
-sudo -H pip install -r requirements.txt
 
 git clone https://github.com/lgkm39/acm-compiler-judge.git
-cd acm-compiler-judge-private/WebServer
+cd acm-compiler-judge
+sudo -H pip install -r requirements.txt
+cd WebServer
 ./maintenance.py initdb
 ./maintenance.py initdb <random_token>
 ./maintenance.py makedirs
@@ -29,7 +28,7 @@ sudo apt-get update
 sudo apt-get install -y git python-pip docker-ce libpq-dev python-dev
 sudo usermod -aG docker $USER
 
-cd acm-compiler-judge/JudgeServer/docker-image
+cd JudgeServer/docker-image
 docker build -t acm-compiler-judge:latest -f production.Dockerfile .
 ```
 
@@ -64,7 +63,7 @@ cd WebServer
 ```
 
 ## Something else...
-mistake about psycopg2
+mistakes about psycopg2
 user mushroom
 user GCC -O0
 user GCC -O1

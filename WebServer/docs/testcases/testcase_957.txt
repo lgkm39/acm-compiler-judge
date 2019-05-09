@@ -50,7 +50,7 @@ output
 === input ===
 17
 === phase ===
-optim extended
+optim pretest
 === output ===
 8910720
 === exitcode ===

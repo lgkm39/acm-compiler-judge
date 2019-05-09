@@ -72,7 +72,7 @@ output
 === input ===
 80
 === phase ===
-optim extended
+optim pretest
 === output ===
 Ans is 915763225
 === exitcode ===

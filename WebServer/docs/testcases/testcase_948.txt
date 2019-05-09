@@ -30,7 +30,7 @@ output
 300000000
 
 === phase ===
-optim extended
+optim pretest
 === output ===
 61824
 

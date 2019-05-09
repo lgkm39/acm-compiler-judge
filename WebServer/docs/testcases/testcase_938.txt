@@ -57,7 +57,7 @@ output
 === input ===
 350
 === phase ===
-optim extended
+optim pretest
 === output ===
 2929506
 1

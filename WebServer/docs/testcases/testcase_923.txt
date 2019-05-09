@@ -123,7 +123,7 @@ output
 125 250
 
 === phase ===
-optim extended
+optim pretest
 === output ===
 149D5946 E02C253C C4F9BF25 16EFF2E4
 === exitcode ===
