@@ -75,5 +75,5 @@ user GCC -O1
 
 user GCC -O2
 
-**remember make directory for JudgeServer**
+**remember to make directory for JudgeServer**
 
