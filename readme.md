@@ -42,7 +42,8 @@ cd WebServer
 
 # run web
 cd WebServer
-gunicorn -b 0.0.0.0:6002 core.core:app  # for production run
+gunicorn -b 0.0.0.0:8080 core.core:app  # for production run
+# or
 ./core/core.py                          # for debug run
 
 # maintenance
