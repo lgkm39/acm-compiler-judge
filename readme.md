@@ -46,6 +46,7 @@ gunicorn -b 0.0.0.0:6002 core.core:app  # for production run
 ./core/core.py                          # for debug run
 
 # maintenance
+cd WebServer
 ./maintenance.py <COMMAND>
 ```
 
@@ -63,8 +64,14 @@ cd WebServer
 ```
 
 ## Something else...
+
 mistakes about psycopg2
+
 user mushroom
+
 user GCC -O0
+
 user GCC -O1
+
 user GCC -O2
+
