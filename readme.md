@@ -3,7 +3,7 @@
 ## Setup Guide for the Web Server
 
 ```bash
-sudo apt-get install -y git python-pip postgresql postgresql-server-dev-9.3 libpq-dev python-dev python-setuptools gunicorn tmux
+sudo apt-get install -y git python-pip postgresql postgresql-server-dev-9.5 libpq-dev python-dev python-setuptools gunicorn tmux
 sudo -H -u postgres psql
 postgres=# CREATE USER compiler2017 WITH PASSWORD 'mypassword';
 postgres=# CREATE DATABASE compiler2017;
